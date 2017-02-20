@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Created by Baheer.
  */
-class MainTest {
+class SortTest {
 
     @Test
-    void slowsort() {
+    void bubbleSort() {
         int[] arrays = new int[10_000];
         int[] arrays2 = new int[10_000];
         int value;
@@ -20,13 +20,13 @@ class MainTest {
             arrays2[i] = value;
         }
         Arrays.sort(arrays);
-        Main.slowsort(arrays2);
+        new BubbleSort().sort(arrays2);
         for (int i = 0; i < arrays.length; i++)
             assertEquals(arrays[i], arrays2[i]);
     }
 
     @Test
-    void fastsort() {
+    void quickSort() {
         int[] arrays = new int[100_000];
         int[] arrays2 = new int[100_000];
         int value;
@@ -36,7 +36,7 @@ class MainTest {
             arrays2[i] = value;
         }
         Arrays.sort(arrays);
-        Main.fastsort(arrays2);
+       new QuickSort().sort(arrays2);
         for (int i = 0; i < arrays.length; i++)
             assertEquals(arrays[i], arrays2[i]);
     }
