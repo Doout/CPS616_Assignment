@@ -1,14 +1,17 @@
+import java.util.Comparator;
+
 /**
  * Created by Baheer.
  */
-public abstract class Sort {
+public abstract class Sort<T> {
 
-    public static void swap(int[] array, int index1, int index2) {
-        int temp = array[index1];
+    public void swap(T[] array, int index1, int index2) {
+        T temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
+
     }
 
-    public abstract void sort(int[] array);
+    public abstract void sort(T[] array, Comparator<T> c);
 
 }

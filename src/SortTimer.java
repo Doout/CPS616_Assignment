@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Random;
 
 /**
@@ -5,7 +6,7 @@ import java.util.Random;
  */
 public class SortTimer {
 
-    private static void initArrays(int size, int[][] arrays) {
+    private static void initArrays(int size, Integer[][] arrays) {
         int maxValue = size * 10;
         int value;
         Random rand = new Random(System.nanoTime());
@@ -18,19 +19,20 @@ public class SortTimer {
     }
 
     private static long timer(Runnable method) {
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         method.run();
-        long end = System.currentTimeMillis();
+        long end = System.nanoTime();
         return end - start;
     }
 
     public static long[] run(int sizeOfArray, Sort... list) {
         long[] times = new long[list.length];
-        int[][] arrays = new int[list.length][sizeOfArray];
+        Integer[][] arrays = new Integer[list.length][sizeOfArray];
         initArrays(sizeOfArray, arrays);
+        Comparator<Integer> integerComparator = Integer::compare;
         for (int i = 0; i < times.length; i++) {
             final int sortIndex = i;
-            times[i] = timer(() -> list[sortIndex].sort(arrays[sortIndex]));
+            times[i] = timer(() -> list[sortIndex].sort(arrays[sortIndex], integerComparator));
         }
         return times;
     }

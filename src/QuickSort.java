@@ -1,21 +1,26 @@
+import java.util.Comparator;
+
 /**
  * Created by Baheer.
  */
-public class QuickSort extends Sort{
+public class QuickSort<T> extends Sort<T> {
 
+
+    private Comparator<T> c;
 
     @Override
-    public void sort(int[] array) {
+    public void sort(T[] array, Comparator<T> c) {
+        this.c = c;
         quickSort(array, 0, array.length - 1);
     }
 
-    public static void quickSort(int[] array, int start, int end) {
+    public void quickSort(T[] array, int start, int end) {
         int i = start;
         int j = end;
-        int pivot = array[(int) (start + (Math.random() * (end - start) / 2d))];
+        T pivot = array[(int) (start + (Math.random() * (end - start) / 2d))];
         while (i <= j) {
-            while (array[i] < pivot) i++;
-            while (array[j] > pivot) j--;
+            while (c.compare(array[i], pivot) < 0) i++;
+            while (c.compare(array[j], pivot) > 0) j--;
             if (i <= j) {
                 swap(array, i++, j--);
             }
