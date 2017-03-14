@@ -1,0 +1,1 @@
+loglog(n,fastsort,'rx',n,12*n.*log(n),'r-',n,slowsort,'bo',n,2*n.^2,'b-')
